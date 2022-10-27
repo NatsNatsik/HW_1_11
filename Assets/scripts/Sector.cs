@@ -8,6 +8,10 @@ public class Sector : MonoBehaviour
     public Material GoodMaterial;
     public Material BadMaterial;
     Rigidbody Rigidbody;
+    private bool isFirstTouch = true;
+
+    public AudioSource breakAudio;
+
 
     void Start()
     {
@@ -28,7 +32,6 @@ public class Sector : MonoBehaviour
     {
         Rigidbody.isKinematic = false;
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.collider.TryGetComponent(out Player player)) return;
@@ -38,14 +41,25 @@ public class Sector : MonoBehaviour
 
         if (IsGood)
         {
-            Game.Score++;
             player.Bounce();
-          Invoke("FallPllatform", 1f);
-          Destroy(gameObject);
+
+            var meshRenderer = GetComponent<MeshRenderer>();
+            meshRenderer.enabled = false;
+            var ownColider = GetComponent<Collider>();
+            ownColider.enabled = false;
+            breakAudio.PlayDelayed(0.25f);
+
+            Invoke("FallPlatform", 1f);
+            Destroy(gameObject, 2);
+
+            Game.Score++;
         }
         else
+        {
             player.Die();
-    }
+        }
+
+    }      
     private void OnValidate()
     {
         UpdateMaterial();

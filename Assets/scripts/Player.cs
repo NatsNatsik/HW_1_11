@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public Rigidbody Rigidbody;
     public Game Game;
 
+    public AudioSource bounceAudio;
+
     public Platform CurrentPlatform;
 
     public void ReachFinish()
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
 
     public void Bounce()
     {
+        bounceAudio.Play();
         Rigidbody.velocity = new Vector3(0, BounceSpeed, 0);
     }
 

@@ -35,7 +35,7 @@ public class Game : MonoBehaviour
 
     public void OnPlayerDied()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         GameOverPanel.SetActive(true);
         GameOver = true;
         Score = 0;

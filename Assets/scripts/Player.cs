@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     {
         Rigidbody.velocity = Vector3.zero;
         die = true;
+        GetComponent<ParticleSystem>().Play();
         Game.OnPlayerDied();
     }
 

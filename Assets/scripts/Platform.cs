@@ -9,7 +9,7 @@ namespace Assets.scripts
         {
             if (other.TryGetComponent(out Player player))
             {
-                 player.CurrentPlatform = this;
+                player.CurrentPlatform = this;
             }
         }
 

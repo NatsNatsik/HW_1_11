@@ -42,6 +42,7 @@ public class Sector : MonoBehaviour
         if (IsGood)
         {
             player.Bounce();
+            GetComponent<ParticleSystem>().Emit(1000);
 
             var meshRenderer = GetComponent<MeshRenderer>();
             meshRenderer.enabled = false;
